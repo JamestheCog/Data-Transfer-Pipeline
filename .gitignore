@@ -1,0 +1,3 @@
+# Environment-specific thingies:
+venv
+.env
