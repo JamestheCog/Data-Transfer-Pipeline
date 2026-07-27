@@ -1,3 +1,6 @@
 # Environment-specific thingies:
 venv
 .env
+
+# Admin-level / highly confidential stuff: 
+unused
