@@ -29,8 +29,9 @@ def upload_data():
         sdk.webhooks.authenticate(app_vals['FORMSG_HEADERS'], uri)
 
         decrypted = sdk.crypto.decrypt(decrypt_key, data)
-        processed = etl.process(decrypted)
-        etl.load(processed)
+        print(decrypted)
+        # processed = etl.process(decrypted)
+        # etl.load(processed)
         return 'Shit went well, man', 200
     except WebhookAuthenticateException:
         runtime.ip_ban.add()
