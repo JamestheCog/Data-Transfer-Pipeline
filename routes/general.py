@@ -31,6 +31,8 @@ def capture_data(resp: Response) -> Response:
     General-purpose middleware - just captures success messages and returns them to the 
     client as JSON for now.
     '''
+    if resp.status_code >= 400 or resp.is_json:
+        return 
     msg = resp.get_data(as_text = True)
     resp.set_data(json.dumps({'msg': msg}))
     resp.headers['Content-Type'] = 'application/json'
