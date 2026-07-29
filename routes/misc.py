@@ -9,7 +9,7 @@ from flask import Blueprint, request, abort, current_app
 from utils import db, runtime
 import json
 
-misc = Blueprint(__name__, 'misc')
+misc = Blueprint('misc', __name__)
 
 @misc.route('/health', methods = ['POST'])
 @runtime.limiter('1 per hour', deduct_when = runtime.on_200)

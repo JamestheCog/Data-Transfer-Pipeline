@@ -7,7 +7,7 @@ from werkzeug.exceptions import HTTPException
 from typing import Tuple
 import json
 
-general = Blueprint(__name__, 'middleware')
+general = Blueprint('middleware', __name__)
 
 # Our app.'s error handler - catch all exceptions bubbled up here:
 @general.errorhandler(HTTPException)

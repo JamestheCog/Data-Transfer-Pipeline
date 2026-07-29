@@ -9,7 +9,7 @@ import formsg, etl, json
 from formsg.exceptions import WebhookAuthenticateException
 from utils import files, runtime
 
-receive = Blueprint(__name__, 'receive')
+receive = Blueprint('receive', __name__)
 sdk = formsg.FormSdk('PRODUCTION')
 
 @receive.route('/upload', methods = ['POST'])
