@@ -9,7 +9,7 @@ from flask import Response
 # === Rate-Limiting / banning utilities ===
 
 # Our banner:
-ip_ban = IpBan()
+ip_ban = IpBan(ban_count = 6)
 
 # Our rate-limiter - adjust when necessary:
 limiter = Limiter(key_func = lambda x : 'global', default_limits = ['10 per hour'])

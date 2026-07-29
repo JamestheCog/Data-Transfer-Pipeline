@@ -43,7 +43,7 @@ def _spoof_data(col_info: list[dict[str, str]]) -> dict[str, Union[str, int, flo
         val = None
         match col_type:
             case 'text' | 'string':
-                val = ''.join(random.sample(string.ascii_letters))
+                val = ''.join(random.sample(string.ascii_letters, MAX_SAMPLE_SIZE))
             case 'integer':
                 val = random.randint(1, MAX_SAMPLE_SIZE)
             case 'real':
