@@ -26,14 +26,14 @@ def upload_data():
     try:
         data = json.loads(data)
         decrypt_key, uri = app_vals['FORMSG_KEY'], app_vals['FORMSG_URI']
-        sdk.webhooks.authenticate(app_vals['FORMSG_HEADERS'], uri)
+        sdk.webhooks.authenticate(request.headers['X-FormSG-Signature'], uri)
 
         decrypted = sdk.crypto.decrypt(decrypt_key, data)
         print(decrypted)
         # processed = etl.process(decrypted)
         # etl.load(processed)
         return 'Shit went well, man', 200
-    except WebhookAuthenticateException:
+    except WebhookAuthenticateException, KeyError:
         runtime.ip_ban.add()
         abort(400, "Begone, and return with your papers!")
     except etl.exceptions.ProcessException as e:
