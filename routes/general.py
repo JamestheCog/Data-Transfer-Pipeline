@@ -22,7 +22,7 @@ def err_handler(e: HTTPException):
             resp['error'] = "You've gone astray!"
         case _:
             resp['error'] = 'What did you do, dude >:('
-    return jsonify(resp), e.code
+    return json.dumps(resp), e.code
 
 # Our app.'s handler for everything else:
 @general.after_app_request
