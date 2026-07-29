@@ -4,3 +4,6 @@ venv
 
 # Admin-level / highly confidential stuff: 
 unused
+
+# Misc. stuff:
+__pycache__
