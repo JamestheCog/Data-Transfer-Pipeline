@@ -1,27 +1,29 @@
 from flask import Flask
 from dotenv import load_dotenv
 from routes import misc, receive, general
-from cryptography.fernet import Fernet
+# from cryptography.fernet import Fernet
 from utils import runtime
 import os, re
 
-# --- Register application routes here---
 app = Flask(__name__)
+
+
+# --- Implementing banning here ---
+runtime.ip_ban.init_app(app)
+# --- END ---
+
+
+# --- Register application routes here---
 app.register_blueprint(misc.misc)
 app.register_blueprint(receive.receive)
 app.register_blueprint(general.general)
 # --- END ---
 
 
-# --- Implementing banning here ---
-runtime.ip_ban.init_app(app, ban_count = 6)
-# --- END ---
-
-
 # --- Registering environment variables as app. config variables ---
 load_dotenv()
 required = ['MAX_FILE_SIZE',
-            'FERNET_KEY', 'HEALTH_PASS'
+            'FERNET_KEY', 'HEALTH_PASS',
             'FORMSG_URI', 'FORMSG_KEY', 'FORMSG_HEADERS',
             'DB_CONN_STRING', 'DB_CONN_URI']
 required_vals = {}
