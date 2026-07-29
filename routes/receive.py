@@ -16,15 +16,15 @@ sdk = formsg.FormSdk('PRODUCTION')
 @runtime.limiter.limit(None, deduct_when = runtime.on_200)
 def upload_data():
     '''
-    The main app.
+    Note (Friday, 24th July, 2026): what was i supposed to do again lol
     '''
     data, data_size = request.data, request.content_length
-    if not data or files.to_mb(data_size) > current_app.config['MAX_FILE_SIZE']:
+    app_vals = current_app.config['APP_VALS']
+    if not data or files.to_mb(data_size) > app_vals['MAX_FILE_SIZE']:
         abort(400, 'Sent payload is invalid')
 
     try:
         data = json.loads(data)
-        app_vals = current_app.config['APP_VALS']
         decrypt_key, uri = app_vals['FORMSG_KEY'], app_vals['FORMSG_URI']
         sdk.webhooks.authenticate(app_vals['FORMSG_HEADERS'], uri)
 

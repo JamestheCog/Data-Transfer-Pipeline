@@ -10,7 +10,7 @@ import json
 general = Blueprint('middleware', __name__)
 
 # Our app.'s error handler - catch all exceptions bubbled up here:
-@general.errorhandler(HTTPException)
+@general.app_errorhandler(HTTPException)
 def err_handler(e: HTTPException):
     resp = {'error': ''}
     match e.code:
