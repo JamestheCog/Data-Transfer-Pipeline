@@ -32,7 +32,7 @@ def capture_data(resp: Response) -> Response:
     client as JSON for now.
     '''
     if resp.status_code >= 400 or resp.is_json:
-        return 
+        return resp
     msg = resp.get_data(as_text = True)
     resp.set_data(json.dumps({'msg': msg}))
     resp.headers['Content-Type'] = 'application/json'

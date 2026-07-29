@@ -28,7 +28,7 @@ def upload_data():
         decrypt_key, uri = app_vals['FORMSG_KEY'], app_vals['FORMSG_URI']
         sdk.webhooks.authenticate(request.headers['X-FormSG-Signature'], uri)
 
-        decrypted = sdk.crypto.decrypt(decrypt_key, data)
+        decrypted = sdk.crypto.decrypt(decrypt_key, data['data'])
         print(decrypted)
         # processed = etl.process(decrypted)
         # etl.load(processed)
