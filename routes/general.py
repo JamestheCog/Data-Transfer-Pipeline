@@ -18,8 +18,10 @@ def err_handler(e: HTTPException):
             resp['error'] = 'Back off, man.  Let me work.'
         case 403:
             resp['error'] = 'Begone, impostor!'
+        case 404:
+            resp['error'] = "You've gone astray!"
         case _:
-            resp['error'] = e.description
+            resp['error'] = 'What did you do, dude >:('
     return jsonify(resp), e.code
 
 # Our app.'s handler for everything else:
