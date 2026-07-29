@@ -19,7 +19,7 @@ def upload_data():
     Note (Friday, 24th July, 2026): what was i supposed to do again lol
     '''
     data, data_size = request.data, request.content_length
-    app_vals = current_app.config['APP_VALS']
+    app_vals = current_app.config['APP_VALUES']
     if not data or files.to_mb(data_size) > app_vals['MAX_FILE_SIZE']:
         abort(400, 'Sent payload is invalid')
 
