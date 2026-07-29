@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from routes import misc, receive, general
 from cryptography.fernet import Fernet
 from utils import runtime
-import os, re, json
+import os, re
 
 # --- Register application routes here---
 app = Flask(__name__)
