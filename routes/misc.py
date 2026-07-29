@@ -12,7 +12,7 @@ import json
 misc = Blueprint('misc', __name__)
 
 @misc.route('/health', methods = ['POST'])
-@runtime.limiter('1 per hour', deduct_when = runtime.on_200)
+@runtime.limiter.limit('1 per hour', deduct_when = runtime.on_200)
 def health():
     '''
     Route logic for health check - functions below initial req. check 

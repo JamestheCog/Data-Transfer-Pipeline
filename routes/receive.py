@@ -13,10 +13,10 @@ receive = Blueprint('receive', __name__)
 sdk = formsg.FormSdk('PRODUCTION')
 
 @receive.route('/upload', methods = ['POST'])
-@runtime.limiter('7 per hour', deduct_when = runtime.on_200)
+@runtime.limiter.limit(None, deduct_when = runtime.on_200)
 def upload_data():
     '''
-    Note (Friday, July 24, 2026): what was i supposed to do again lol
+    The main app.
     '''
     data, data_size = request.data, request.content_length
     if not data or files.to_mb(data_size) > current_app.config['MAX_FILE_SIZE']:
